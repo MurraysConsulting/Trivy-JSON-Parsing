@@ -19,14 +19,17 @@ json_files = glob.glob(os.path.join(path2, "*.json"))
 
 #Getting the information from the JSON files into a variable as raw data
 containersInfo = {}
-
+#List of all containers == first level key for containersInfo dict
+containerList = []
 
 for files in json_files:
     f = open(files, encoding='utf8')
     container = files.split("\\")[-1].split(".")[0]
+    
     try:
 
         test_json = json.load(f)
+        containerList.append(container)
         containersInfo.update({container: test_json})
         f.close()
     except:
